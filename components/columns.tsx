@@ -3,7 +3,8 @@ export const columns = [
     {
         header:"Id",
         accessorKey:'id',
-        footer:'Id'
+        footer:'Id',
+        enableColumnFilter:false
     },
    
     {
@@ -61,7 +62,8 @@ export const columnDefinitionWithGrouping = [
     {
         header:"Id",
         accessorKey:'id',
-        footer:'Id'
+        footer:'Id',
+        enableColumnFilter:false
     },
     {
         header:"Name",
