@@ -4,6 +4,11 @@ export const columns = [
         accessorKey:'id',
         footer:'Id'
     },
+    {
+        header:"first & last",
+        accessorFn:(row:any)=>`${row.first_name} ${row.last_name} `,
+        footer:'ID'
+    },
     
     {
  
@@ -35,5 +40,17 @@ export const columns = [
         accessorKey:'phone',
         footer:'Id'
     },
+
+]
+
+//cell merge example
+export const columnDefWithCellMerge = [
+
+    {
+        header:"first & last",
+        accessorFn:(row:any)=>`${row.first_name} ${row.last_name} `,
+        footer:'Name'
+    },
+  
 
 ]
