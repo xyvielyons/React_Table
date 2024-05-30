@@ -1,12 +1,23 @@
 'use client'
-import React,{useMemo} from 'react'
-import { columns } from './columns'
+import React,{useMemo, useState} from 'react'
+import { columnDefinitionWithGrouping } from './columns'
 import mData from '@/components/MOCK_DATA.json'
-import { useReactTable,flexRender,getCoreRowModel } from '@tanstack/react-table'
+import { useReactTable,flexRender,getCoreRowModel,getSortedRowModel } from '@tanstack/react-table'
 export default function BasicTable() {
-  const columnsDef = useMemo(()=>columns,[])
+  const columnsDef = useMemo(()=>columnDefinitionWithGrouping,[])
   const data = useMemo(()=>mData,[])
-  const table = useReactTable({data,columns:columnsDef,getCoreRowModel:getCoreRowModel()})
+  const [sorting,setSorting]=useState([])
+  const table = useReactTable({
+    data,
+    columns:columnsDef,
+    getCoreRowModel:getCoreRowModel(),
+    getSortedRowModel:getSortedRowModel(),
+    state:{
+      sorting:sorting,
+    },
+    onSortingChange:setSorting,
+  
+  })
  
   return (
     <div>
@@ -16,9 +27,13 @@ export default function BasicTable() {
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id} >
               {headerGroup.headers.map(header => (
-                <th key={header.id}>
-                  {flexRender(header.column.columnDef.header,
+                <th key={header.id} onClick={header.column.getToggleSortingHandler()}>
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header,
                   header.getContext())}
+
+
+
+                  {{asc:"UP",desc:'DOWN'}[header.column.getIsSorted() ?? null]}
                 </th>
               ))}
 

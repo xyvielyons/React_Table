@@ -1,4 +1,3 @@
-import moment from 'moment';
 export const columns = [
     {
         header:"Id",
@@ -90,14 +89,12 @@ export const columnDefinitionWithGrouping = [
 
         header:"Date of Birth",
         accessorKey:'date_of_birth',
-        footer:'Id',
-        cell:({getValue}:any)=>moment(new Date(getValue())).format('MMM D YY')
-
+        footer:'Id'
     },
     {
         header:"Country",
         accessorKey:'country',
-        footer:'Id',
+        footer:'Id'
     },
     {
      
