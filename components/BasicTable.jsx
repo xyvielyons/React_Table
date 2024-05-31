@@ -11,6 +11,7 @@ export default function BasicTable() {
   const [filtering,setFiltering]=useState("")
   const [columnFilters,setColumnFilters]=useState([])
   const [rowSelection,setRowSelection]=useState({})
+  const [columnOrder,setColumnOrder] = useState([])
   const defaultColumn = React.useMemo(()=>{
     return {
       YouTubeProp:"Hello world"
@@ -39,12 +40,17 @@ export default function BasicTable() {
     },
     onRowSelectionChange:setRowSelection,
     enableRowSelection:true,
+    state:{
+      columnOrder:columnOrder
+    },
+    onColumnOrderChange:setColumnOrder,
 
    
   })
  
   return (
     <div>
+      <button onClick={()=>setColumnOrder(['email'])}>change order</button>
       <input
       type='text'
       value={ filtering}
